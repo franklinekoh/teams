@@ -4,8 +4,6 @@ namespace App\Entity;
 
 use App\Repository\PlayerTransferRepository;
 use Doctrine\ORM\Mapping as ORM;
-use App\Entity\Player;
-use App\Entity\Team;
 
 #[ORM\Entity(repositoryClass: PlayerTransferRepository::class)]
 class PlayerTransfer
@@ -21,10 +19,10 @@ class PlayerTransfer
     #[ORM\Column]
     private ?float $amount = null;
 
-    #[ORM\Column]
+    #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
     private ?\DateTimeImmutable $created_at = null;
 
-    #[ORM\Column]
+    #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
     private ?\DateTimeImmutable $updated_at = null;
 
     #[ORM\ManyToOne(inversedBy: 'playerTransfers')]

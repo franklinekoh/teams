@@ -8,6 +8,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use App\Model\TeamDto;
 use App\Repository\PlayerRepository;
 use Doctrine\ORM\Query;
+use App\Entity\Player;
 
 /**
  * @extends ServiceEntityRepository<Team>
@@ -54,6 +55,15 @@ class TeamRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('t')
             ->orderBy('t.created_at', 'DESC')
             ->getQuery();
+    }
+
+    public function hasPlayer(int $team_id, int $player_id): bool
+    {
+        $data = $this->playerRepository->findOneBy(['id' => $player_id, 'team' => $team_id]);
+        if ($data){
+            return true;
+        }
+        return false;
     }
 
 //    /**
