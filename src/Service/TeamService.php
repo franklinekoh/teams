@@ -7,7 +7,6 @@ use App\Model\TeamDto;
 use App\Entity\Team;
 use App\Mapper\TeamMapper;
 use App\Model\ResponseDto\TeamResponseDto;
-use App\Service\PaginatorService;
 
 class TeamService
 {

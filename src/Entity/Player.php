@@ -5,9 +5,7 @@ namespace App\Entity;
 use App\Repository\PlayerRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use App\Entity\Team;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: PlayerRepository::class)]
@@ -129,13 +127,13 @@ class Player
         return $this;
     }
 
-    /**
-     * @return Collection<int, PlayerTransfer>
-     */
-    public function getPlayerTransfers(): Collection
-    {
-        return $this->playerTransfers;
-    }
+//    /**
+//     * @return Collection<int, PlayerTransfer>
+//     */
+//    public function getPlayerTransfers(): Collection
+//    {
+//        return $this->playerTransfers;
+//    }
 
     public function addPlayerTransfer(PlayerTransfer $playerTransfer): static
     {

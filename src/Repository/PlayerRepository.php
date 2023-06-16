@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Player;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -37,6 +38,15 @@ class PlayerRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function getFreeAgentsQuery(): Query
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.is_free_agent = :is_free_agent')
+            ->setParameter('is_free_agent', true)
+            ->orderBy('p.created_at', 'DESC')
+            ->getQuery();
     }
 
 //    /**
