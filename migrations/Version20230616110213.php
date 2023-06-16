@@ -20,7 +20,7 @@ final class Version20230616110213 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE player ADD worth DOUBLE PRECISION NOT NULL');
+        $this->addSql('ALTER TABLE player ADD worth DOUBLE PRECISION NOT NULL DEFAULT 0.0');
     }
 
     public function down(Schema $schema): void

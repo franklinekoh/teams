@@ -47,4 +47,9 @@ class TeamService
 //      assuming our system has large dataset and heavy traffic.
         return $this->paginatorService->paginate($query, $page, $limit);
     }
+
+    public function getTeam(int $id): Team
+    {
+        return $this->teamRepository->find($id);
+    }
 }

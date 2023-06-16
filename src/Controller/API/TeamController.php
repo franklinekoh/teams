@@ -53,4 +53,16 @@ class TeamController extends AbstractController
             'data' => $response
         ]);
     }
+
+    #[Route('/team/{id}', name: 'get_one_team', methods: ['GET'])]
+    public function show(int $id): JsonResponse
+    {
+        $response = $this->teamService->getTeam($id);
+
+        return $this->json([
+            'status' => 'success',
+            'message' => 'Team data',
+            'data' => $response
+        ]);
+    }
 }
