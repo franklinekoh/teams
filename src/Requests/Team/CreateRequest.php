@@ -29,7 +29,9 @@ class CreateRequest extends BaseRequest
         new Assert\Collection([
             'fields' => [
                 'first_name' => [new Assert\NotBlank(), new Assert\Type(['type' => 'string'])],
-                'last_name' => [new Assert\NotBlank(), new Assert\Type(['type' => 'string'])]
+                'last_name' => [new Assert\NotBlank(), new Assert\Type(['type' => 'string'])],
+                'worth' => [new Assert\NotBlank(), new Assert\Type(['type' => 'numeric'])],
+                'is_free_agent' => [new Assert\Type(['type' => 'boolean'])]
             ]
         ])
     ])]
