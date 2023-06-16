@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Team;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: PlayerRepository::class)]
 class Player
@@ -17,29 +18,33 @@ class Player
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::GUID)]
-    private ?string $uuid = null;
-
     #[ORM\Column(length: 50)]
     private ?string $first_name = null;
 
     #[ORM\Column(length: 50)]
     private ?string $last_name = null;
 
-    #[ORM\Column]
+    #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
     private ?\DateTimeImmutable $created_at = null;
 
-    #[ORM\Column]
+    #[ORM\Column(options: ['default' => 'CURRENT_TIMESTAMP'])]
     private ?\DateTimeImmutable $updated_at = null;
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $deleted_at = null;
 
-    #[ORM\ManyToOne(inversedBy: 'players')]
+    #[Groups("player")]
+    #[ORM\ManyToOne(targetEntity: Team::class, inversedBy: 'players')]
     private ?Team $team = null;
 
     #[ORM\OneToMany(mappedBy: 'player', targetEntity: PlayerTransfer::class)]
     private Collection $playerTransfers;
+
+    #[ORM\Column(options: ['default' => 'false'])]
+    private ?bool $is_free_agent = null;
+
+    #[ORM\Column]
+    private ?float $worth = null;
 
     public function __construct()
     {
@@ -49,18 +54,6 @@ class Player
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getUuid(): ?string
-    {
-        return $this->uuid;
-    }
-
-    public function setUuid(string $uuid): static
-    {
-        $this->uuid = $uuid;
-
-        return $this;
     }
 
     public function getFirstName(): ?string
@@ -123,10 +116,10 @@ class Player
         return $this;
     }
 
-    public function getTeam(): ?Team
-    {
-        return $this->team;
-    }
+//    public function getTeam(): ?Team
+//    {
+//        return $this->team;
+//    }
 
     public function setTeam(?Team $team): static
     {
@@ -161,6 +154,30 @@ class Player
                 $playerTransfer->setPlayer(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isIsFreeAgent(): ?bool
+    {
+        return $this->is_free_agent;
+    }
+
+    public function setIsFreeAgent(bool $is_free_agent): static
+    {
+        $this->is_free_agent = $is_free_agent;
+
+        return $this;
+    }
+
+    public function getWorth(): ?float
+    {
+        return $this->worth;
+    }
+
+    public function setWorth(float $worth): static
+    {
+        $this->worth = $worth;
 
         return $this;
     }
