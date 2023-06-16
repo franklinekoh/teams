@@ -2,10 +2,10 @@
 
 namespace App\Controller\API;
 
-use App\Service\CountryService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use App\Service\CountryService;
 
 #[Route('/api')]
 class CountryController extends AbstractController
@@ -21,7 +21,7 @@ class CountryController extends AbstractController
         $response = $this->countryService->getAll();
         return $this->json([
             'status' => 'success',
-            'message' => 'Countries Lists',
+            'message' => 'Countries List',
             'data' => $response
         ]);
     }
