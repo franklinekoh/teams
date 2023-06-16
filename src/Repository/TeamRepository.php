@@ -5,6 +5,9 @@ namespace App\Repository;
 use App\Entity\Team;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use App\Model\TeamDto;
+use App\Repository\PlayerRepository;
+use Doctrine\ORM\Query;
 
 /**
  * @extends ServiceEntityRepository<Team>
@@ -16,13 +19,20 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class TeamRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(
+        ManagerRegistry $registry,
+        private readonly PlayerRepository $playerRepository
+    )
     {
         parent::__construct($registry, Team::class);
     }
 
     public function save(Team $entity, bool $flush = false): void
     {
+        foreach ($entity->getPlayers() as $player){
+            $this->playerRepository->save($player);
+        }
+
         $this->getEntityManager()->persist($entity);
 
         if ($flush) {
@@ -37,6 +47,13 @@ class TeamRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function fetchAllTeamsQuery(): Query
+    {
+        return $this->createQueryBuilder('t')
+            ->orderBy('t.created_at', 'DESC')
+            ->getQuery();
     }
 
 //    /**
