@@ -34,8 +34,8 @@ final class Version20230615140620 extends AbstractMigration
         $this->addSql('COMMENT ON COLUMN player.deleted_at IS \'(DC2Type:datetime_immutable)\'');
         $this->addSql('CREATE TABLE player_transfer (id INT NOT NULL, player_id INT DEFAULT NULL, buyer_id INT DEFAULT NULL, seller_id INT DEFAULT NULL, currency VARCHAR(255) NOT NULL, amount DOUBLE PRECISION NOT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP NOT NULL, updated_at TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_46E3E22099E6F5DF ON player_transfer (player_id)');
-        $this->addSql('CREATE UNIQUE INDEX UNIQ_46E3E2206C755722 ON player_transfer (buyer_id)');
-        $this->addSql('CREATE UNIQUE INDEX UNIQ_46E3E2208DE820D9 ON player_transfer (seller_id)');
+//        $this->addSql('CREATE UNIQUE INDEX UNIQ_46E3E2206C755722 ON player_transfer (buyer_id)');
+//        $this->addSql('CREATE UNIQUE INDEX UNIQ_46E3E2208DE820D9 ON player_transfer (seller_id)');
         $this->addSql('COMMENT ON COLUMN player_transfer.created_at IS \'(DC2Type:datetime_immutable)\'');
         $this->addSql('COMMENT ON COLUMN player_transfer.updated_at IS \'(DC2Type:datetime_immutable)\'');
         $this->addSql('CREATE TABLE team (id INT NOT NULL, name VARCHAR(100) NOT NULL, country VARCHAR(100) NOT NULL, money_balance DOUBLE PRECISION NOT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP NOT NULL, updated_at TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP NOT NULL, deleted_at TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT NULL, PRIMARY KEY(id))');
