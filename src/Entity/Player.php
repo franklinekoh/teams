@@ -37,18 +37,19 @@ class Player
     #[ORM\ManyToOne(targetEntity: Team::class, inversedBy: 'players')]
     private ?Team $team = null;
 
-    #[ORM\OneToMany(mappedBy: 'player', targetEntity: PlayerTransfer::class)]
-    private Collection $playerTransfers;
-
     #[ORM\Column(options: ['default' => 'false'])]
     private ?bool $is_free_agent = null;
 
-    #[ORM\Column]
+    #[ORM\Column(options: ['default' => 0.0])]
     private ?float $worth = null;
+
+    #[ORM\OneToMany(mappedBy: 'player', targetEntity: PlayerTransfer::class)]
+    private Collection $playerTransfers;
 
     public function __construct()
     {
         $this->playerTransfers = new ArrayCollection();
+        $this->setIsFreeAgent(false);
     }
 
     public function getId(): ?int
