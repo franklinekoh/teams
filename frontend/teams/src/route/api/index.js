@@ -18,7 +18,7 @@ export const BaseApi = {
             return `/player/free-agents`
         }
     },
-    player_Transfer: {
+    playerTransfer: {
         create(){
             return '/player-transfer'
         },
