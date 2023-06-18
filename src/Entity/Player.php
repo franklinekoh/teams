@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 #[ORM\Entity(repositoryClass: PlayerRepository::class)]
 class Player
@@ -31,6 +32,7 @@ class Player
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $deleted_at = null;
 
+    #[MaxDepth(1)]
     #[Groups("player")]
     #[ORM\ManyToOne(targetEntity: Team::class, inversedBy: 'players')]
     private ?Team $team = null;
@@ -60,6 +62,10 @@ class Player
         return $this->first_name;
     }
 
+    public function getName(): ?string
+    {
+        return '';
+    }
     public function setFirstName(string $first_name): static
     {
         $this->first_name = $first_name;
@@ -115,10 +121,10 @@ class Player
         return $this;
     }
 
-//    public function getTeam(): ?Team
-//    {
-//        return $this->team;
-//    }
+    public function getTeam(): ?Team
+    {
+        return $this->team;
+    }
 
     public function setTeam(?Team $team): static
     {

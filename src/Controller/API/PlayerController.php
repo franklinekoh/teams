@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Requests\Player\CreateRequest;
 use App\Model\PlayerDto;
 use App\Service\PlayerService;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 
 
 #[Route('/api')]
@@ -42,15 +44,23 @@ class PlayerController extends AbstractController
     }
 
     #[Route('/player/free-agents', name: 'get_free_agents', methods: ['GET'])]
-    public function getFreeAgents(Request $request): JsonResponse
+    public function getFreeAgents(Request $request, SerializerInterface $serializer): JsonResponse
     {
         $response = $this->playerService->getFreeAgents($request->query->getInt('page', 1),
             $request->query->getInt('limit', 10));
 
+        $circularRefHandler = fn($player, $format, $context)=> $player->getName();
+        $context = [
+            AbstractNormalizer::CIRCULAR_REFERENCE_HANDLER => $circularRefHandler
+        ];
+
+        $responseJson = $serializer->serialize($response, 'json', $context);
+        $responseJson = json_decode($responseJson);
+
         return $this->json([
             'status' => 'success',
             'message' => 'List of free agents',
-            'data' => $response
+            'data' => $responseJson
         ]);
     }
 }
