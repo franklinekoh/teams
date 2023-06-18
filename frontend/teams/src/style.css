@@ -69,6 +69,10 @@
     background-color: var(--color-text);
 }
 
+.table-form, input, select {
+    color: var(--color-text);
+}
+
 /* Table styling */
 table {
     width: 100%;
