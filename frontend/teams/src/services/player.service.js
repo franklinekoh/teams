@@ -7,7 +7,7 @@ class PlayerService{
     }
 
     async getFreeAgents(query = ''){
-        return await API.get(BaseApi.player.all(query))
+        return await API.get(BaseApi.player.getFreeAgents(query))
     }
 
 }

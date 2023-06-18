@@ -16,14 +16,16 @@
         currentPage: 1,
         isTeamVisible: false,
         isCreateTeamVisible: false,
-
+        teamData: {}
       }),
       watch: {
 
       },
       methods: {
-        showTeam() {
+        showTeam(teamData) {
+        console.log(teamData)
         this.isTeamVisible = true
+        this.teamData = teamData
         },
         closeTeam() {
           this.isTeamVisible = false
@@ -56,7 +58,7 @@
     <!-- List teams -->
     <div class="team-lists mt-4 p-8">
         <CreateTeam v-if="isCreateTeamVisible" @goBack="goBack"/>
-        <ViewTeam v-else-if="isTeamVisible" @goBack="goBack"/>
+        <ViewTeam v-else-if="isTeamVisible" @goBack="goBack" :team-data="teamData"/>
         <ListTeams @showCreateTeam="showCreateTeam" @showTeam="showTeam" v-else/>
         
     </div>

@@ -17,8 +17,8 @@
         isTeamVisible: false,
         isCreateTeamVisible: false,
         itemsPerPage: 5,
-        totalPages: null,
-        teams: []
+        totalPages: 50,
+        teams: [],
       }),
       watch: {
 
@@ -36,7 +36,7 @@
         async fetchTeams(page = 1){
             try{
                const response = await TeamService.all(`?page=${page}&limit=${this.itemsPerPage}`)
-               this.totalPages = response?.total
+               this.totalPages = response?.data?.total
                this.teams = response?.data?.items
             }catch(e){
                 this.handleError(e)
@@ -44,23 +44,24 @@
         },
         formatAmount(amount) {
             // should be a utility function in real life
-        let newAmount = parseFloat(amount);
-        if (!newAmount) {
-          return amount;
-        }
+            let newAmount = parseFloat(amount);
+            if (!newAmount) {
+            return amount;
+            }
 
-          return newAmount.toLocaleString('en-US', {
-            style: 'currency',
-            currency: 'USD',
-          });
-      },
+            return newAmount.toLocaleString('en-US', {
+                style: 'currency',
+                currency: 'USD',
+            });
+        },
         handleError(error) {
         // use composables/utils to implement a generic function for this, given the time
         let message =
           error?.response?.data?.message ||
           error?.response?.message ||
           error.toString()
-        this.toast.error(message)
+          alert(message)
+         this.toast.error(message)  
         },
       },
        async mounted() {
@@ -88,7 +89,7 @@
               <td>{{ team.name }}</td>
               <td>{{ team.country }}</td>
               <td>{{ formatAmount(team.moneyBalance) }}</td>
-              <td><button @click="$emit('showTeam')"><font-awesome-icon class="text-2xl" icon="fa-solid fa-eye"/></button></td>
+              <td><button @click="$emit('showTeam', team)"><font-awesome-icon class="text-2xl" icon="fa-solid fa-eye"/></button></td>
             </tr>
           </table>
         </div>
