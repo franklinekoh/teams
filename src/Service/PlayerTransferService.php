@@ -40,6 +40,10 @@ class PlayerTransferService
             return new PlayerTransferResponseDto(false, 'player id not found');
         }
 
+        if (!$player->isIsFreeAgent()){
+            return new PlayerTransferResponseDto(false, 'player is not a available for transfer');
+        }
+
         $sellerHasPlayer = $this->teamRepository->hasPlayer($seller->getId(), $player->getId());
 
         if (!$sellerHasPlayer){
