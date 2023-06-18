@@ -1,10 +1,7 @@
 import axios from 'axios'
-import { useToast, POSITION } from 'vue-toastification';
-
-const toaster = useToast();
 
 export const API = axios.create({
-    baseURL: process.env.API_URL,
+    baseURL: import.meta.env.VITE_API_URL,
     withCredentials: false,
 });
 

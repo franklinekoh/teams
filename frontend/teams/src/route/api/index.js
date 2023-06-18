@@ -1,7 +1,7 @@
 export const BaseApi = {
     team: {
-        all(query){
-            return `/team/${query}`
+        all(query=''){
+            return `/team${query}`
         },
         create(){
             return `/team`
@@ -14,8 +14,8 @@ export const BaseApi = {
         create(){
             return '/player'
         },
-        getFreeAgents(){
-            return `/player/free-agents`
+        getFreeAgents(query=''){
+            return `/player/free-agents${query}`
         }
     },
     playerTransfer: {

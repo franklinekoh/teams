@@ -11,6 +11,9 @@ import VueAwesomePaginate from "vue-awesome-paginate"
 
 import "vue-awesome-paginate/dist/style.css"
 
+// import Toast, { POSITION } from 'vue-toastification';
+import "vue-toastification/dist/index.css"
+
 import './style.css'
 
 /* import specific icons */
@@ -22,8 +25,14 @@ library.add(faSquarePlus, faEye, faArrowLeft, faCartShopping, faFloppyDisk)
 const app = createApp(App)
 
 app.component('font-awesome-icon', FontAwesomeIcon)
-// app.component(VModal)
 
 app.use(VueAwesomePaginate)
+
+// app.use(Toast, {
+//     position: POSITION.TOP_RIGHT,
+//     transition: "Vue-Toastification__bounce",
+//     maxToasts: 20,
+//     newestOnTop: true
+// });
 
 app.mount('#app')
