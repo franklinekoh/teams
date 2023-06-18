@@ -32,7 +32,34 @@
           try{
             const response = await playerService.getFreeAgents(`?page=${page}&limit=${this.itemsPerPage}`)
             this.totalPages = response?.data?.total
-            this.players = response?.data?.items
+            this.players = response?.data?.items.map((player) => {
+                return {
+                  id: player.id,
+                  firstName: player.firstName,
+                  lastName: player.lastName,
+                  createdAt: player.createdAt,
+                  updatedAt: player.updatedAt,
+                  worth: player.worth,
+                  isFreeAgent: player.isFreeAgent,
+                  teamId: player.team.id
+                }
+            })
+            this.players = this.players.filter(player => player.teamId !== this.teamId)
+          }catch(e){
+            this.handleError(e)
+          }
+        },
+        async createPlayerTransfer(player){
+          try{
+            const payload = {
+              player_id: player.id,
+              buyer_id: this.teamId,
+              seller_id: player.teamId,
+              currency: 'USD'
+            }
+            const response = await PlayerTransferService.create(payload)
+            console.log(response)
+            await this.fetchFreeAgents()
           }catch(e){
             this.handleError(e)
           }
@@ -79,13 +106,13 @@
                       <th>Worth</th>
                       <th>Buy</th>
                     </tr>
-                    <tr v-for="player in this.players" :key="player.id">
+                    <tr v-for="(player, index) in players" :key="index">
                       <td>{{ player.firstName }}</td>
                       <td>{{ player.lastName }}</td>
                       <td v-if="player.isFreeAgent">Yes</td>
                       <td v-else>No</td>
                       <td>{{ formatAmount(player.worth) }}</td>
-                      <td><button><font-awesome-icon class="text-2xl" icon="fa-solid fa-cart-shopping"/></button></td>
+                      <td><button @click="createPlayerTransfer(player)"><font-awesome-icon class="text-2xl" icon="fa-solid fa-cart-shopping"/></button></td>
                     </tr>
                   </table>
                 </div>
