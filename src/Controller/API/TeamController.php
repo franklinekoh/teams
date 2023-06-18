@@ -11,6 +11,8 @@ use App\Model\TeamDto;
 use App\Service\TeamService;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
+use Symfony\Component\Serializer\SerializerInterface;
 
 #[Route('/api')]
 class TeamController extends AbstractController
@@ -42,15 +44,23 @@ class TeamController extends AbstractController
     }
 
     #[Route('/team', name: 'get_teams', methods: ['GET'])]
-    public function index(Request $request): JsonResponse
+    public function index(Request $request, SerializerInterface $serializer): JsonResponse
     {
         $response = $this->teamService->getAll($request->query->getInt('page', 1),
             $request->query->getInt('limit', 10));
 
+        $circularRefHandler = fn($player, $format, $context)=> $player->getName();
+        $context = [
+            AbstractNormalizer::CIRCULAR_REFERENCE_HANDLER => $circularRefHandler
+        ];
+
+        $responseJson = $serializer->serialize($response, 'json', $context);
+        $responseJson = json_decode($responseJson);
+
         return $this->json([
             'status' => 'success',
             'message' => 'List of teams',
-            'data' => $response
+            'data' => $responseJson
         ]);
     }
 
