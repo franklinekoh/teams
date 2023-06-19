@@ -1,0 +1,171 @@
+{
+	"info": {
+		"_postman_id": "b8e57a33-a318-4915-afb7-c35b66463692",
+		"name": "Teams",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2558213"
+	},
+	"item": [
+		{
+			"name": "Create Team",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Real Maldrid\",\n    \"country\": \"France\",\n    \"money_balance\": \"20000000\",\n    \"players\": [\n        {   \n            \"is_free_agent\": false,\n            \"worth\": 100000,\n            \"first_name\": \"Tega\",\n            \"last_name\": \"Akpa\"\n        },\n         {\n            \"is_free_agent\": false,\n            \"worth\": 100000,\n            \"first_name\": \"Son of man\",\n            \"last_name\": \"Akpa\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/team",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"team"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Teams",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get Team",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/team/37",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"team",
+						"37"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Player",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get Countries",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/countries",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"countries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Currencies",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Create Player Transfer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"player_id\": 7,\n    \"seller_id\": 33,\n    \"buyer_id\": 37,\n    \"currency\": \"USD\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/player-transfer",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"player-transfer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Free agents",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/player/free-agents",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"player",
+						"free-agents"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://127.0.0.1:8000",
+			"type": "string"
+		}
+	]
+}

@@ -23,7 +23,6 @@
       },
       methods: {
         showTeam(teamData) {
-        console.log(teamData)
         this.isTeamVisible = true
         this.teamData = teamData
         },
