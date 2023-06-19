@@ -41,6 +41,7 @@ https://www.loom.com/share/8b54f58920244fb0892e246f0442a626
 - Implement cache system for faster loading of results during database queries
 - Use composable to handle errors better on the frontend
 - Write unit tests, at least for the backend services
+- Made the transfer page more reactive by adding newly bought players to player list without remounting the component
 - Add edit player endpoint to be able to sell players without having to add them (if you want to sell a player, added them as a free agent when viewing a team)
 - Implement payment with different currencies
 - Add dialog/conformation UX for when buying/making a payer a free agent
