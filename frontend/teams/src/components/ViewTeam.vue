@@ -42,6 +42,7 @@
             try{
                 // Frontend form validation here.
                 const response = await PlayerService.create(player)
+                console.log(response)
                 this.teamData.players.push(response?.data)
                 this.newPlayer = {
                     first_name: '',

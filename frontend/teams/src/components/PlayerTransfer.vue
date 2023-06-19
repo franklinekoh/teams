@@ -3,7 +3,7 @@
   import PlayerTransferService from '../services/player-transfer.service'
   import playerService from '../services/player.service'
   import { useToast } from "vue-toastification";
-  
+
     export default defineComponent({
       setup() {
         const toast = useToast();
@@ -23,7 +23,7 @@
         isTeamVisible: false,
         isCreateTeamVisible: false,
         itemsPerPage: 5,
-        totalPages: 50,
+        totalPages: null,
         players: []
       }),
       watch: {
@@ -124,6 +124,7 @@
                 <!-- pagination -->
                 <div class="mt-4">
                     <vue-awesome-paginate
+                        v-if="totalPages"
                         :total-items="totalPages"
                         v-model="currentPage"
                         :items-per-page="itemsPerPage"

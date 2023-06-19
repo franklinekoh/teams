@@ -17,7 +17,7 @@
         isTeamVisible: false,
         isCreateTeamVisible: false,
         itemsPerPage: 5,
-        totalPages: 50,
+        totalPages: null,
         teams: [],
       }),
       watch: {
@@ -97,6 +97,7 @@
         <!-- pagination -->
         <div class="mt-4">
           <vue-awesome-paginate
+            v-if="totalPages"
             :total-items="totalPages"
             v-model="currentPage"
             :items-per-page="itemsPerPage"

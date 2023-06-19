@@ -24,7 +24,9 @@ class PlayerController extends AbstractController
     {}
 
     #[Route('/player', name: 'create_player', methods: ['POST'])]
-    public function store(CreateRequest $createRequest, #[MapRequestPayload] PlayerDto $playerDto): JsonResponse
+    public function store(CreateRequest $createRequest,
+        #[MapRequestPayload] PlayerDto $playerDto,
+        SerializerInterface $serializer): JsonResponse
     {
         $response = $this->playerService->create($playerDto);
 
@@ -36,10 +38,18 @@ class PlayerController extends AbstractController
             ], Response::HTTP_BAD_REQUEST);
         }
 
+        $circularRefHandler = fn($player, $format, $context)=> $player->getName();
+        $context = [
+            AbstractNormalizer::CIRCULAR_REFERENCE_HANDLER => $circularRefHandler
+        ];
+
+        $responseJson = $serializer->serialize($response, 'json', $context);
+        $responseJson = json_decode($responseJson);
+
         return $this->json([
             'status' => 'success',
             'message' => 'player created',
-            'data' => $response->data
+            'data' => $responseJson->data
         ], Response::HTTP_CREATED);
     }
 
