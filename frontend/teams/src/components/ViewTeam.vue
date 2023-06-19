@@ -2,8 +2,13 @@
   import { defineComponent } from 'vue'
   import PlayerTransfer from './PlayerTransfer.vue'
   import PlayerService from '../services/player.service'
+  import { useToast } from "vue-toastification";
 
     export default defineComponent({
+        setup() {
+        const toast = useToast();
+        return { toast }
+        },
       name: 'ViewTeam',
       components: {
         PlayerTransfer

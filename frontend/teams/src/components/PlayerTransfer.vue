@@ -2,8 +2,13 @@
   import { defineComponent } from 'vue'
   import PlayerTransferService from '../services/player-transfer.service'
   import playerService from '../services/player.service'
-
+  import { useToast } from "vue-toastification";
+  
     export default defineComponent({
+      setup() {
+        const toast = useToast();
+        return { toast }
+      },
       name: 'PlayerTransfer',
       components: {
       },
@@ -57,8 +62,7 @@
               seller_id: player.teamId,
               currency: 'USD'
             }
-            const response = await PlayerTransferService.create(payload)
-            console.log(response)
+            await PlayerTransferService.create(payload)
             await this.fetchFreeAgents()
           }catch(e){
             this.handleError(e)
