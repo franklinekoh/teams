@@ -31,7 +31,7 @@
 <p>Add a team using the plus icon on top right of the page and continue using app</p>
 
 <p>below short video to illustrate some features</p>
-[![Watch the video](https://github.com/franklinekoh/teams/assets/30264870/c7167655-36a6-4e3f-b17a-85d3af056820)](https://www.loom.com/share/8b54f58920244fb0892e246f0442a626)
+![Watch the video](https://github.com/franklinekoh/teams/assets/30264870/c7167655-36a6-4e3f-b17a-85d3af056820)](https://www.loom.com/share/8b54f58920244fb0892e246f0442a626)
 
 <p>Go to rootFolder/doc folder for API documentation with a postman collection </p>
 
