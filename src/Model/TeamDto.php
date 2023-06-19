@@ -9,7 +9,7 @@ class TeamDto
 
         public string $country,
 
-        public string $money_balance,
+        public float $money_balance,
 
         public array $players
     )
