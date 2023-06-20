@@ -28,6 +28,7 @@
 
 <p>Home page looks like below</p>
 ![home](https://github.com/franklinekoh/teams/assets/30264870/f2945473-22b3-4d97-8d61-0a22abe07981)
+
 <p>Add a team using the plus icon on top right of the page and continue using app</p>
 
 <p>below short video to illustrate some features</p>
@@ -35,7 +36,7 @@ https://www.loom.com/share/8b54f58920244fb0892e246f0442a626
 
 <p>Go to rootFolder/doc folder for API documentation with a postman collection </p>
 
-###  As sent in the email, I would have added the following if I had a more hours to give for this project, except during the weekend:
+###  As stated in the email, I would have added the following if I had a more hours to give for this project, except during the weekend:
 
 - Add frontend form validations for better UX. Backend validations exists so that would do for data integrity
 - Implement cache system for faster loading of results during database queries
@@ -47,6 +48,6 @@ https://www.loom.com/share/8b54f58920244fb0892e246f0442a626
 - Add dialog/conformation UX for when buying/making a payer a free agent
 - Use generic function/composable to handle error on the frontend
 - Fix the aching npm conflict issue 
-- Better error handling mechanics on the frontend
+- Better error handling mechanism on the frontend
 - Containerize the app for easier installation
 
