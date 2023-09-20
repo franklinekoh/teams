@@ -2,6 +2,8 @@
 <p>A basic app for managing football teams and it's players.</p>
 <p>This app makes provision for adding a football team and its players and transfer players between teams</p>
 
+<p>Note: This is not a production ready app</p>
+
 ## Requirements to run this app
 - PHP version 8.1 
 - Postgres SQL
@@ -36,18 +38,16 @@ https://www.loom.com/share/8b54f58920244fb0892e246f0442a626
 
 <p>Go to rootFolder/doc folder for API documentation with a postman collection </p>
 
-###  As stated in the email, I would have added the following if I had a more hours to give for this project, except during the weekend:
+###  Todo:
 
 - Add frontend form validations for better UX. Backend validations exists so that would do for data integrity
 - Implement cache system for faster loading of results during database queries
-- Use composable to handle errors better on the frontend
 - Write unit tests, at least for the backend services
-- Made the transfer page more reactive by adding newly bought players to player list without remounting the component
-- Add edit player endpoint to be able to sell players without having to add them (if you want to sell a player, added them as a free agent when viewing a team)
+- Make the transfer page more reactive by adding newly bought players to player list without remounting the component
+- Add "edit player" endpoint to be able to sell players without having to add them (if you want to sell a player, added them as a free agent when viewing a team)
 - Implement payment with different currencies
-- Add dialog/conformation UX for when buying/making a payer a free agent
+- Add dialog/confirmation UX for when buying/making a player a free agent
 - Use generic function/composable to handle error on the frontend
 - Fix the aching npm conflict issue 
-- Better error handling mechanism on the frontend
 - Containerize the app for easier installation
 
